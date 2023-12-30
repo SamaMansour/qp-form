@@ -1,4 +1,7 @@
 import Image from 'next/image'
+import { useState } from 'react';
+import 'antd/dist/antd.css'; // Import Ant Design styles
+
 
 export default function Home() {
   return (

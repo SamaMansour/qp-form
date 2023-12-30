@@ -3,36 +3,38 @@
 // pages/index.tsx
 // pages/index.tsx
 import { useState } from 'react';
-import { Form, Input, Button, Card } from 'antd';
+import { Form, Input, Button, Card, message } from 'antd';
 
 export default function Home() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     const handleSubmit = async (event: React.FormEvent) => {
-    console.log('Submitting:', { username, password }); // Log the credentials
+        try {
+            const response = await fetch('/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            });
 
-    try {
-        const response = await fetch('/api/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ username, password }),
-        });
+            const data = await response.json();
 
-        const data = await response.json();
-        console.log('Response:', data); // Log the response
-
-        if (response.ok) {
-            // Handle success
-        } else {
-            // Handle failure
+            if (response.ok) {
+                // Display success message
+                message.success('Login successful');
+                // Additional actions on successful login (e.g., redirect)
+            } else {
+                // Display error message
+                message.error(data.message || 'Invalid username or password');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            message.error('An error occurred, please try again later');
         }
-    } catch (error) {
-        console.error('Error:', error);
-    }
-};
+    };
+
 
 
     return (

@@ -9,9 +9,31 @@ export default function Home() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = async () => {
-        // API call logic here
+    const handleSubmit = async (event: React.FormEvent) => {
+    console.log('Submitting:', { username, password }); // Log the credentials
+
+    try {
+        const response = await fetch('/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, password }),
+        });
+
+        const data = await response.json();
+        console.log('Response:', data); // Log the response
+
+        if (response.ok) {
+            // Handle success
+        } else {
+            // Handle failure
+        }
+    } catch (error) {
+        console.error('Error:', error);
     }
+};
+
 
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: '#f0f2f5' }}>

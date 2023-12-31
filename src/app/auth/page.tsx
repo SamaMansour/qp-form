@@ -60,7 +60,13 @@ export default function Home() {
                             value={formik.values.password} 
                         />
                     </Form.Item>
-                    <Button type="primary" htmlType="submit" block disabled={formik.isSubmitting}>
+                    <Button
+                        type="primary"
+                        htmlType="submit"
+                        block
+                        disabled={formik.isSubmitting}
+                        className="custom-login-button" // Apply custom class
+                    >
                         Login
                     </Button>
                 </Form>

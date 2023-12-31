@@ -25,3 +25,21 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+
+/* styles.css or in a <style jsx> in your component */
+
+.custom-login-button {
+  background-color: #1890ff;
+  /* Replace with your desired color */
+  border-color: #1890ff;
+  /* Replace with your desired color */
+}
+
+.custom-login-button:hover,
+.custom-login-button:focus {
+  background-color: #1890ff;
+  /* Replace with your desired color for hover and focus */
+  border-color: #1890ff;
+  /* Replace with your desired color for hover and focus */
+}
